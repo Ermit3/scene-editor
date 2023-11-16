@@ -25,8 +25,8 @@ export const meshes = pgTable("meshes", {
   castShadow: boolean("cast_shadow").default(false),
   recieveShadow: boolean("receive_shadow").default(false),
   fromScene: text("from_scene").references(() => scenes.id),
-  createdAt: timestamp("created_at"),
-  updatedAt: timestamp("updated_at"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
 });
 
 export const meshesRelations = relations(meshes, ({ one }) => ({

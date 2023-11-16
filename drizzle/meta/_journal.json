@@ -15,6 +15,20 @@
       "when": 1700083081690,
       "tag": "0001_confused_jack_murdock",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1700134065372,
+      "tag": "0002_talented_lizard",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1700134405683,
+      "tag": "0003_handy_carnage",
+      "breakpoints": true
     }
   ]
 }

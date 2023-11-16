@@ -8,8 +8,8 @@ export const scenes = pgTable("scenes", {
   id: text("id").notNull().primaryKey().unique(),
   name: text("name"),
   owner: text("user_id").references(() => users.id),
-  createdAt: timestamp("created_at"),
-  updatedAt: timestamp("updated_at"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
 });
 
 export const scenesRelations = relations(scenes, ({ one, many }) => ({
