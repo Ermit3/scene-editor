@@ -1,7 +1,4 @@
 import { AddScene } from "@/components/scene-create-button";
-import { CardSkeleton } from "@/components/card-skeleton";
-import Image from "next/image";
-import { getAllScenes } from "@/db";
 import { SceneCard } from "@/components/scene-card";
 
 async function getData() {

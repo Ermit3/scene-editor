@@ -56,7 +56,7 @@ export const getAllScenes = async () => {
   return await db.select().from(scenes).orderBy(desc(scenes.name));
 };
 
-export const getOneScene = async ({ id }: IdInterface) => {
+export const getSceneById = async (id: string) => {
   return await db.select().from(scenes).where(eq(scenes.id, id));
 };
 
