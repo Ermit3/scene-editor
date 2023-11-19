@@ -12,11 +12,20 @@ interface SetUserInterface {
   role: "admin" | "customer";
 }
 
-//
+// STUDIO
 interface SceneInterface {
   id: string;
   name: string;
-  owner: any;
+  owner: string;
   createdAt: string;
   updatedAt: string;
+}
+
+interface EditorPageProps {
+  params: { sceneId: string };
+}
+
+interface SceneStateType {
+  currentTool: string | null;
+  setCurrentTool: (tool: string | null) => void;
 }

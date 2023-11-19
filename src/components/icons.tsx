@@ -23,6 +23,17 @@ import {
   Twitter,
   User,
   X,
+  BarChart4,
+  ArrowDownToDot,
+  Boxes,
+  Component,
+  Upload,
+  Type,
+  PlaySquare,
+  Globe,
+  Activity,
+  Shell,
+  Theater,
 } from "lucide-react";
 
 export const Icons = {
@@ -82,4 +93,15 @@ export const Icons = {
   ),
   twitter: Twitter,
   check: Check,
+  barChart4: BarChart4,
+  arrowDownToDot: ArrowDownToDot,
+  boxes: Boxes,
+  component: Component,
+  upload: Upload,
+  type: Type,
+  playSquare: PlaySquare,
+  globe: Globe,
+  shell: Shell,
+  theater: Theater,
+  activity: Activity,
 };
