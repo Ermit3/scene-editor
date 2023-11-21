@@ -20,9 +20,7 @@ export async function POST(req: Request) {
     const json = await req.json();
     const body = sceneCreateSchema.parse(json);
 
-    const scene = await setScene({
-      name: body.name,
-    });
+    const scene = await setScene(body.name);
 
     return new Response(JSON.stringify(scene[0]));
   } catch (error) {

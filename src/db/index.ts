@@ -10,6 +10,11 @@ import * as meshesSchema from "./schemas/meshes";
 
 import { users } from "./schemas/users";
 import { scenes } from "./schemas/scenes";
+import { meshes } from "./schemas/meshes";
+
+import dotenv from "dotenv";
+
+dotenv.config({ path: "./.env.local" });
 
 neonConfig.fetchConnectionCache = true;
 
@@ -60,10 +65,68 @@ export const getSceneById = async (id: string) => {
   return await db.select().from(scenes).where(eq(scenes.id, id));
 };
 
-export const setScene = async ({ name }: { name: string }) => {
+export const setScene = async (name: string) => {
   return db.insert(scenes).values({ id: nanoid(), name }).returning();
 };
 
-export const deleteScene = async ({ id }: IdInterface) => {
+export const deleteScene = async (id: string) => {
   return await db.delete(scenes).where(eq(scenes.id, id)).returning();
+};
+
+// CRUD MESHES
+export const getMeshesByScene = async (id: string) => {
+  return await db.select().from(meshes).where(eq(meshes.sceneId, id));
+};
+
+export const setMesh = async ({ type, sceneId }: any) => {
+  return await db
+    .insert(meshes)
+    .values({
+      id: nanoid(),
+      type,
+      positionX: 0,
+      positionY: 0,
+      positionZ: 0,
+      rotationX: 0,
+      rotationY: 0,
+      rotationZ: 0,
+      scaleX: 1,
+      scaleY: 1,
+      scaleZ: 1,
+      sceneId,
+    })
+    .returning();
+};
+
+export const updateMesh = async ({
+  id,
+  scale,
+  position,
+  rotation,
+  shadow,
+  visible,
+}: any) => {
+  return await db
+    .update(meshes)
+    .set({
+      positionX: position.x,
+      positionY: position.y,
+      positionZ: position.z,
+      rotationX: rotation.x,
+      rotationY: rotation.y,
+      rotationZ: rotation.z,
+      scaleX: scale.x,
+      scaleY: scale.y,
+      scaleZ: scale.z,
+      visible,
+      castShadow: shadow.cast,
+      recieveShadow: shadow.receive,
+      updatedAt: new Date(),
+    })
+    .where(eq(meshes.id, id))
+    .returning();
+};
+
+export const deleteMesh = async (id: string) => {
+  return await db.delete(meshes).where(eq(meshes.id, id)).returning();
 };

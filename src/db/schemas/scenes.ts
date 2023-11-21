@@ -12,10 +12,10 @@ export const scenes = pgTable("scenes", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-export const scenesRelations = relations(scenes, ({ one, many }) => ({
-  user: one(users, {
-    fields: [scenes.owner],
-    references: [users.id],
-  }),
+export const scenesRelations = relations(scenes, ({ many }) => ({
+  // user: one(users, {
+  //   fields: [scenes.owner],
+  //   references: [users.id],
+  // }),
   meshes: many(meshes),
 }));

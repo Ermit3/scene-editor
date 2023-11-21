@@ -18,9 +18,12 @@ export default function StudioProvider({
   children: React.ReactNode;
 }) {
   const [currentTool, setCurrentTool] = useState<string | null>(null);
+  const [shapes, setShapes] = useState<any>([]);
 
   return (
-    <SceneState.Provider value={{ currentTool, setCurrentTool }}>
+    <SceneState.Provider
+      value={{ currentTool, setCurrentTool, shapes, setShapes }}
+    >
       {children}
     </SceneState.Provider>
   );

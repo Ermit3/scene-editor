@@ -1,4 +1,4 @@
-export default function CanvaLight() {
+export default function CanvasLight() {
   return (
     <>
       <ambientLight />

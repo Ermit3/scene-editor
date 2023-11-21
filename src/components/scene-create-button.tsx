@@ -39,7 +39,7 @@ export function AddScene() {
     // This forces a cache invalidation.
     router.refresh();
 
-    router.push(`/editor/${scene.id}`);
+    router.push(`/studio/${scene.id}`);
   }
 
   return (

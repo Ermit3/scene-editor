@@ -17,7 +17,6 @@ const Tools: FC<ToolProps> = ({ name, icon }) => {
   const { setCurrentTool } = useSceneState();
 
   const getIconComponent = (iconName: string) => {
-    // Assuming Icons is an object with icon components
     const iconComponents: IconComponents = {
       component: <Icons.component />,
       boxes: <Icons.boxes />,
@@ -34,7 +33,6 @@ const Tools: FC<ToolProps> = ({ name, icon }) => {
   };
 
   const onFocus = () => {
-    setCurrentTool(null);
     setCurrentTool(name);
   };
   return (

@@ -4,6 +4,8 @@ import {
   integer,
   pgTable,
   boolean,
+  decimal,
+  numeric,
 } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 
@@ -11,27 +13,27 @@ import { scenes } from "./scenes";
 
 export const meshes = pgTable("meshes", {
   id: text("id").notNull().primaryKey().unique(),
-  name: text("name").$type<"cube" | "plane" | "sphere">().notNull(),
-  positionX: integer("position_x").default(0).notNull(),
-  positionY: integer("position_y").default(0).notNull(),
-  positionZ: integer("position_z").default(0).notNull(),
-  rotationX: integer("rotation_x").default(0).notNull(),
-  rotationY: integer("rotation_y").default(0).notNull(),
-  rotationZ: integer("rotation_z").default(0).notNull(),
-  scaleX: integer("scale_x").default(0).notNull(),
-  scaleY: integer("scale_y").default(0).notNull(),
-  scaleZ: integer("scale_z").default(0).notNull(),
-  viewable: boolean("viewable").default(true),
+  type: text("type").$type<"cube" | "plane" | "sphere">().notNull(),
+  positionX: decimal("position_x").notNull(),
+  positionY: decimal("position_y").notNull(),
+  positionZ: decimal("position_z").notNull(),
+  rotationX: decimal("rotation_x").notNull(),
+  rotationY: decimal("rotation_y").notNull(),
+  rotationZ: decimal("rotation_z").notNull(),
+  scaleX: decimal("scale_x").notNull(),
+  scaleY: decimal("scale_y").notNull(),
+  scaleZ: decimal("scale_z").notNull(),
+  visible: boolean("visible").default(true),
   castShadow: boolean("cast_shadow").default(false),
   recieveShadow: boolean("receive_shadow").default(false),
-  fromScene: text("from_scene").references(() => scenes.id),
+  sceneId: text("scene_id").references(() => scenes.id),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
 export const meshesRelations = relations(meshes, ({ one }) => ({
   scene: one(scenes, {
-    fields: [meshes.fromScene],
+    fields: [meshes.sceneId],
     references: [scenes.id],
   }),
 }));

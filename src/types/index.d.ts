@@ -28,4 +28,6 @@ interface EditorPageProps {
 interface SceneStateType {
   currentTool: string | null;
   setCurrentTool: (tool: string | null) => void;
+  shapes: any;
+  setShapes: any;
 }

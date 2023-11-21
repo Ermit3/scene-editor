@@ -1,10 +1,10 @@
 import { Grid } from "@react-three/drei";
 import { DoubleSide } from "three";
 
-export default function CanvaGrid() {
+export default function CanvasGrid() {
   return (
     <Grid
-      position={[0, -0.001, 0]}
+      position={[0, -0.501, 0]}
       args={[10.5, 10.5]}
       fadeDistance={25}
       cellThickness={0.65}
