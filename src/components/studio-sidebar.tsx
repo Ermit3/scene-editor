@@ -1,26 +1,51 @@
 "use client";
 
-import { useContext, useEffect } from "react";
-import { useSceneState } from "./studio-provider";
-import styles from "@/styles";
+import { useState } from "react";
+import { useSignalEffect } from "signals-react-safe";
+
+import { currentShape } from "./3d/shapes";
+import { Icons } from "./icons";
 import { cn } from "@/lib/utils";
+import styles from "@/styles";
+import ComponentsBar from "./studio-components-bar";
+import ShapeConfig from "./studio-shapes-config";
+import { ShapeType } from "@/types";
 
 export function EditorSidebar() {
-  const { currentTool } = useSceneState();
+  const [hovered, setHovered] = useState(false);
+  const [activeShape, setActiveShape] = useState<ShapeType | []>(
+    currentShape.value
+  );
+
+  useSignalEffect(() => {
+    setActiveShape(currentShape.value);
+  });
 
   return (
-    <div
-      className={cn(
-        `absolute w-52 inset-y-0 ${styles.studioToolsBg} text-black dark:text-white rounded-md`,
-        {
-          "-right-0 animate-in duration-500 slide-in-from-right fade-in":
-            currentTool,
-          "-right-52 animate-out duration-200 slide-out-from-left fade-out":
-            !currentTool,
-        }
-      )}
-    >
-      {currentTool}
-    </div>
+    <>
+      <div
+        className={cn(
+          `absolute flex w-10 h-10 top-12 right-8 ${styles.studioToolsBg} text-black dark:text-white rounded-md`,
+          {
+            "w-64 lg:h-72 animate-in duration-700 slide-in-from-right": hovered,
+            "w-10 h-10 justify-center animate-in duration-700 slide-in-from-right":
+              !hovered,
+          }
+        )}
+      >
+        {!hovered ? (
+          <Icons.layers
+            className={cn(`w-6 h-6`, {
+              "animate-out duration-1000 fade-out": hovered,
+              "self-center animate-in duration-1000 fade-in": !hovered,
+            })}
+            onClick={() => setHovered(true)}
+          />
+        ) : (
+          <ComponentsBar hover={{ hovered, setHovered }} />
+        )}
+      </div>
+      <ShapeConfig activeShape={activeShape} />
+    </>
   );
 }

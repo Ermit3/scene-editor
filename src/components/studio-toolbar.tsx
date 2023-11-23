@@ -15,13 +15,13 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
-import { setMesh } from "@/db";
 import { useParams } from "next/navigation";
 import useSetMesh from "@/hooks/useSetMesh";
 import { Euler, Vector3 } from "three";
+import { SceneIdParamsType, ShapeType } from "@/types";
 
 const Toolbar: FC = () => {
-  const { sceneId } = useParams<any>();
+  const { sceneId } = useParams<SceneIdParamsType>();
   const { currentTool, setCurrentTool, shapes, setShapes } = useSceneState();
 
   const onClick = () => {
@@ -31,7 +31,7 @@ const Toolbar: FC = () => {
   const onClickShape = (type: string) => {
     const newMesh = useSetMesh(type, sceneId);
     newMesh.then((result) => {
-      return setShapes((prevList: any) => [
+      return setShapes((prevList: ShapeType[]) => [
         ...prevList,
         {
           id: result[0].id,
@@ -93,8 +93,12 @@ const Toolbar: FC = () => {
       >
         <div className="px-2.5 w-full">
           <div className="flex flex-row justify-between p-2.5">
-            <p>{currentTool}</p>
-            <p onClick={onClick}>B</p>
+            <div className="self-center">
+              <p className="select-none">{currentTool}</p>
+            </div>
+            <div className="self-center" onClick={onClick}>
+              <Icons.close />
+            </div>
           </div>
           <div className="w-full">
             <Separator />

@@ -1,5 +1,6 @@
 "use client";
 
+import { SceneStateType, ShapeType } from "@/types";
 import { createContext, useContext, useState } from "react";
 
 const SceneState = createContext<SceneStateType | undefined>(undefined);
@@ -18,11 +19,19 @@ export default function StudioProvider({
   children: React.ReactNode;
 }) {
   const [currentTool, setCurrentTool] = useState<string | null>(null);
-  const [shapes, setShapes] = useState<any>([]);
+  const [currentShape, setCurrentShape] = useState<ShapeType | null>(null);
+  const [shapes, setShapes] = useState<ShapeType[]>([]);
 
   return (
     <SceneState.Provider
-      value={{ currentTool, setCurrentTool, shapes, setShapes }}
+      value={{
+        currentTool,
+        setCurrentTool,
+        shapes,
+        setShapes,
+        currentShape,
+        setCurrentShape,
+      }}
     >
       {children}
     </SceneState.Provider>

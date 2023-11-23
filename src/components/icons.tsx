@@ -34,6 +34,9 @@ import {
   Activity,
   Shell,
   Theater,
+  Layers,
+  Box,
+  ChevronDown,
 } from "lucide-react";
 
 export const Icons = {
@@ -104,4 +107,7 @@ export const Icons = {
   shell: Shell,
   theater: Theater,
   activity: Activity,
+  layers: Layers,
+  box: Box,
+  chevronDown: ChevronDown,
 };

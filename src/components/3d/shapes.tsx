@@ -1,44 +1,43 @@
-import { deleteMesh, updateMesh } from "@/db";
-import { Box, Edges, Outlines, PivotControls } from "@react-three/drei";
+import { updateMesh } from "@/db";
+import { Box, Outlines, PivotControls } from "@react-three/drei";
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { Euler, Matrix4, Quaternion, Vector3 } from "three";
 import { useSceneState } from "../studio-provider";
-import _ from "lodash";
+import { signal } from "signals-react-safe";
+import { ShapeProps, ShapeType, XYZType } from "@/types";
 
-interface ShapeProps {
-  id: string;
-  type: string;
-  scale: Vector3;
-  position: Vector3;
-  rotation: Euler;
-  visible: boolean;
-  castShadow: boolean;
-  receiveShadow: boolean;
-}
+export let currentShape = signal<ShapeType | []>([]);
 
 export const Shape: React.FC<ShapeProps> = ({ id, type, ...props }) => {
   const { position, rotation, scale, visible, castShadow, receiveShadow } = {
     ...props,
   };
-  const { shapes, setShapes } = useSceneState();
+  const { shapes } = useSceneState();
 
   const shapeRef = useRef<any>();
   const [isMounted, setIsMounted] = useState(true);
   const [active, setActive] = useState(false);
+  const [trash, setTrash] = useState([]);
 
-  const [_position, setPosition] = useState<any>({
+  const [_position, setPosition] = useState<XYZType>({
     x: position.x,
     y: position.y,
     z: position.z,
   });
-  const [_rotation, setRotation] = useState<any>({
+  const [_rotation, setRotation] = useState<XYZType>({
     x: rotation.x,
     y: rotation.y,
     z: rotation.z,
   });
 
   const onClick = () => {
+    currentShape.value = shapes.filter(
+      (shape: ShapeType) => shape.id === id
+    )[0];
     setActive(!active);
+    if ((currentShape.value as ShapeProps[]).length > 0) {
+      console.log((currentShape.value as ShapeProps[])[0].id);
+    }
   };
 
   useEffect(() => {
@@ -46,15 +45,6 @@ export const Shape: React.FC<ShapeProps> = ({ id, type, ...props }) => {
       setIsMounted(false);
     };
   }, []);
-
-  const onDoubleClick = async () => {
-    deleteMesh(id).then(() => {
-      if (isMounted) {
-        const updatedShapes = shapes.filter((shape: any) => shape.id !== id);
-        setShapes(updatedShapes);
-      }
-    });
-  };
 
   const getMeshComponent = () => {
     const material = <meshBasicMaterial color="grey" />;
@@ -71,12 +61,7 @@ export const Shape: React.FC<ShapeProps> = ({ id, type, ...props }) => {
     switch (type) {
       case "cube":
         return (
-          <Box
-            ref={shapeRef}
-            onClick={onClick}
-            onDoubleClick={onDoubleClick}
-            {...props}
-          >
+          <Box ref={shapeRef} onClick={onClick} {...props}>
             {material}
             {outline}
           </Box>

@@ -4,9 +4,10 @@ import { useParams } from "next/navigation";
 import { getMeshesByScene } from "@/db";
 import { Vector3, Euler } from "three";
 import { useEffect } from "react";
+import { SceneIdParamsType, ShapeDbType, ShapeType } from "@/types";
 
 export default function CanvasMeshes() {
-  const { sceneId } = useParams<any>();
+  const { sceneId } = useParams<SceneIdParamsType>();
   const { shapes, setShapes } = useSceneState();
 
   useEffect(() => {
@@ -30,21 +31,21 @@ export default function CanvasMeshes() {
             castShadow,
             recieveShadow,
           }: any) => {
-            if (shapes.filter((shape: any) => shape.id === id).length === 0) {
-              setShapes((prevList: any) => [
-                ...prevList,
-                {
-                  id,
-                  type,
-                  scale: new Vector3(scaleX, scaleY, scaleZ),
-                  coordinate: {
-                    position: new Vector3(positionX, positionY, positionZ),
-                    rotation: new Euler(rotationX, rotationY, rotationZ),
-                  },
-                  visible,
-                  shadow: { receive: recieveShadow, cast: castShadow },
+            if (
+              shapes.filter((shape: ShapeType) => shape.id === id).length === 0
+            ) {
+              const newShape = {
+                id,
+                type,
+                scale: new Vector3(scaleX, scaleY, scaleZ),
+                coordinate: {
+                  position: new Vector3(positionX, positionY, positionZ),
+                  rotation: new Euler(rotationX, rotationY, rotationZ),
                 },
-              ]);
+                visible,
+                shadow: { receive: recieveShadow, cast: castShadow },
+              };
+              setShapes((prevList: ShapeType[]) => [...prevList, newShape]);
             }
           }
         );
@@ -59,7 +60,10 @@ export default function CanvasMeshes() {
   return (
     <>
       {shapes.map(
-        ({ id, type, scale, coordinate, visible, shadow }: any, k: number) => {
+        (
+          { id, type, scale, coordinate, visible, shadow }: ShapeType,
+          k: number
+        ) => {
           return (
             <Shape
               key={k}
