@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export function CardSkeleton() {
+export const CardSkeleton = () => {
   return (
     <Card>
       <CardHeader className="gap-2">
@@ -19,4 +19,4 @@ export function CardSkeleton() {
       </CardFooter>
     </Card>
   );
-}
+};

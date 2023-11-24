@@ -37,6 +37,7 @@ import {
   Layers,
   Box,
   ChevronDown,
+  Home,
 } from "lucide-react";
 
 export const Icons = {
@@ -110,4 +111,5 @@ export const Icons = {
   layers: Layers,
   box: Box,
   chevronDown: ChevronDown,
+  home: Home,
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { FC, useState } from "react";
 import { useSignalEffect } from "signals-react-safe";
 
 import { currentShape } from "./3d/shapes";
@@ -11,7 +11,7 @@ import ComponentsBar from "./studio-components-bar";
 import ShapeConfig from "./studio-shapes-config";
 import { ShapeType } from "@/types";
 
-export function EditorSidebar() {
+export const EditorSidebar: FC = () => {
   const [hovered, setHovered] = useState(false);
   const [activeShape, setActiveShape] = useState<ShapeType | []>(
     currentShape.value
@@ -48,4 +48,4 @@ export function EditorSidebar() {
       <ShapeConfig activeShape={activeShape} />
     </>
   );
-}
+};

@@ -13,11 +13,7 @@ export const useSceneState = () => {
   return context;
 };
 
-export default function StudioProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export const StudioProvider = ({ children }: { children: React.ReactNode }) => {
   const [currentTool, setCurrentTool] = useState<string | null>(null);
   const [currentShape, setCurrentShape] = useState<ShapeType | null>(null);
   const [shapes, setShapes] = useState<ShapeType[]>([]);
@@ -36,4 +32,6 @@ export default function StudioProvider({
       {children}
     </SceneState.Provider>
   );
-}
+};
+
+export default StudioProvider;

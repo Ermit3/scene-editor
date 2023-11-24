@@ -6,7 +6,7 @@ import { Vector3, Euler } from "three";
 import { useEffect } from "react";
 import { SceneIdParamsType, ShapeDbType, ShapeType } from "@/types";
 
-export default function CanvasMeshes() {
+export const CanvasMeshes = () => {
   const { sceneId } = useParams<SceneIdParamsType>();
   const { shapes, setShapes } = useSceneState();
 
@@ -81,4 +81,6 @@ export default function CanvasMeshes() {
       )}
     </>
   );
-}
+};
+
+export default CanvasMeshes;

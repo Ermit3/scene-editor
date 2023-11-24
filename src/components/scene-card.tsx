@@ -1,11 +1,21 @@
 import Link from "next/link";
 
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { FC } from "react";
+import { getMeshesByScene } from "@/db";
+import { useSignal } from "signals-react-safe";
 
-export function SceneCard({ scene }: any) {
+// const getMeshes = (id: string) => {
+//   return getMeshesByScene(id).then((meshes) => {
+//     return meshes.length;
+//   });
+// };
+
+export const SceneCard: FC = ({ scene }: any) => {
+  // const meshCount = useSignal(getMeshes(scene.id));
   return (
     <Card className="flex flex-col h-56 transition duration-300 ease-in-out hover:bg-slate-800">
-      <CardContent className="flex-1 self-center">
+      <CardContent className="flex-1 self-center py-3">
         <Link
           href={`/studio/${scene.id}`}
           className="font-semibold hover:underline"
@@ -14,8 +24,10 @@ export function SceneCard({ scene }: any) {
         </Link>
       </CardContent>
       <CardFooter className="flex self-center">
-        <p>Meshes : 0</p>
+        {/* <p>Meshes : {meshCount.value}</p> */}
       </CardFooter>
     </Card>
   );
-}
+};
+
+export default SceneCard;

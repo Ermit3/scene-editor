@@ -1,40 +1,48 @@
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
-interface IdInterface {
+type IdInterface = {
   id: string;
-}
+};
 
-interface EmailInterface {
+type EmailInterface = {
   email: string;
-}
+};
 
-interface SetUserInterface {
+type SetUserInterface = {
   email: string;
   password: string;
   role: "admin" | "customer";
-}
+};
 
-// STUDIO
-interface SceneInterface {
+type SceneType = {
   id: string;
   name: string;
   owner: string;
   createdAt: string;
   updatedAt: string;
-}
+};
 
-interface EditorPageProps {
+// STUDIO
+type SceneInterface = {
+  id: string;
+  name: string;
+  owner: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+type EditorPageProps = {
   params: { sceneId: string };
-}
+};
 
-interface SceneStateType {
+type SceneStateType = {
   currentTool: string | null;
   setCurrentTool: (tool: string | null) => void;
   shapes: any;
   setShapes: any;
   currentShape: any | null;
   setCurrentShape: (shape: any | null) => void;
-}
+};
 
 type ShapeProps = {
   id: string;
@@ -84,11 +92,24 @@ type ShapesConfigProps = {
 };
 
 type XYZType = {
-  x: any;
-  y: any;
-  z: any;
+  x: number;
+  y: number;
+  z: number;
 };
 
 interface SceneIdParamsType extends Params {
   sceneId: string;
 }
+
+type ShapeSelectorProps = {
+  type: string;
+};
+
+type ToolProps = {
+  name: string;
+  icon: string;
+};
+
+type IconComponents = {
+  [key: string]: React.ReactNode;
+};

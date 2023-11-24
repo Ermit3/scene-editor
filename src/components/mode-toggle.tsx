@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Icons } from "@/components/icons";
 
-export function ModeToggle() {
+export const ModeToggle = () => {
   const { setTheme } = useTheme();
 
   return (
@@ -40,4 +40,4 @@ export function ModeToggle() {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};

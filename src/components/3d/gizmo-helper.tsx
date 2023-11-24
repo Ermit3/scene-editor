@@ -1,6 +1,6 @@
 import { GizmoHelper, GizmoViewport } from "@react-three/drei";
 
-export default function CanvasGizmoHelper() {
+export const CanvasGizmoHelper = () => {
   return (
     <GizmoHelper alignment="bottom-right" margin={[80, 80]}>
       <GizmoViewport
@@ -9,4 +9,6 @@ export default function CanvasGizmoHelper() {
       />
     </GizmoHelper>
   );
-}
+};
+
+export default CanvasGizmoHelper;

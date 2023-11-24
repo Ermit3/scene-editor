@@ -1,6 +1,6 @@
 import { Circle, Edges } from "@react-three/drei";
 
-export default function Cursor() {
+export const Cursor = () => {
   return (
     <group>
       <Circle scale={0.001} position={[0, -0.5, 0]}>
@@ -17,4 +17,6 @@ export default function Cursor() {
       </Circle>
     </group>
   );
-}
+};
+
+export default Cursor;

@@ -8,14 +8,11 @@ import {
 } from "@/components/ui/card";
 import { Icons } from "./icons";
 
-import { customAlphabet } from "nanoid/non-secure";
 import { generate } from "@/lib/name-generator";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const nanoid = customAlphabet("1234567890abcdef", 10);
-
-export function AddScene() {
+export const AddScene = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -36,7 +33,6 @@ export function AddScene() {
 
     const scene = await response.json();
 
-    // This forces a cache invalidation.
     router.refresh();
 
     router.push(`/studio/${scene.id}`);
@@ -55,4 +51,4 @@ export function AddScene() {
       </CardFooter>
     </Card>
   );
-}
+};

@@ -17,12 +17,11 @@ export const Shape: React.FC<ShapeProps> = ({ id, type, ...props }) => {
   const shapeRef = useRef<any>();
   const [isMounted, setIsMounted] = useState(true);
   const [active, setActive] = useState(false);
-  const [trash, setTrash] = useState([]);
 
   const [_position, setPosition] = useState<XYZType>({
-    x: position.x,
-    y: position.y,
-    z: position.z,
+    x: parseFloat(position.x),
+    y: parseFloat(position.y),
+    z: parseFloat(position.z),
   });
   const [_rotation, setRotation] = useState<XYZType>({
     x: rotation.x,
@@ -30,14 +29,12 @@ export const Shape: React.FC<ShapeProps> = ({ id, type, ...props }) => {
     z: rotation.z,
   });
 
-  const onClick = () => {
+  const onClick = (e: any): void => {
+    e.stopPropagation();
     currentShape.value = shapes.filter(
       (shape: ShapeType) => shape.id === id
     )[0];
     setActive(!active);
-    if ((currentShape.value as ShapeProps[]).length > 0) {
-      console.log((currentShape.value as ShapeProps[])[0].id);
-    }
   };
 
   useEffect(() => {
@@ -90,14 +87,11 @@ export const Shape: React.FC<ShapeProps> = ({ id, type, ...props }) => {
       const updatedRotation = newRotation;
 
       setPosition({
-        x: parseFloat(_position.x) + updatedPosition.x,
-        y: parseFloat(_position.y) + updatedPosition.y,
-        z: parseFloat(_position.z) + updatedPosition.z,
+        x: _position.x + updatedPosition.x,
+        y: _position.y + updatedPosition.y,
+        z: _position.z + updatedPosition.z,
       });
       setRotation(updatedRotation);
-
-      console.log("Position:", _position);
-      console.log("Rotation:", _rotation);
     },
     [position, rotation]
   );

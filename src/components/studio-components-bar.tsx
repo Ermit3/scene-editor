@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
-import { useState } from "react";
 import { Icons } from "./icons";
 import { Input } from "./ui/input";
 import { useSceneState } from "./studio-provider";

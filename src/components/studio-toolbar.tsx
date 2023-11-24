@@ -6,7 +6,7 @@ import Tools from "./studio-tools";
 import { useSceneState } from "./studio-provider";
 import styles from "@/styles";
 import { toolList } from "@/config/tool-list";
-import { cn, randomNumber } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 import {
   Tooltip,
@@ -15,41 +15,14 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
-import { useParams } from "next/navigation";
-import useSetMesh from "@/hooks/useSetMesh";
-import { Euler, Vector3 } from "three";
-import { SceneIdParamsType, ShapeType } from "@/types";
+import ShapeSelector from "./studio-shapes-selector";
+import { shapeList } from "@/config/shape-list";
 
 const Toolbar: FC = () => {
-  const { sceneId } = useParams<SceneIdParamsType>();
-  const { currentTool, setCurrentTool, shapes, setShapes } = useSceneState();
+  const { currentTool, setCurrentTool } = useSceneState();
 
   const onClick = () => {
     setCurrentTool(null);
-    console.log(sceneId);
-  };
-  const onClickShape = (type: string) => {
-    const newMesh = useSetMesh(type, sceneId);
-    newMesh.then((result) => {
-      return setShapes((prevList: ShapeType[]) => [
-        ...prevList,
-        {
-          id: result[0].id,
-          type: result[0].type,
-          scale: new Vector3(1, 1, 1),
-          coordinate: {
-            position: new Vector3(
-              0 * randomNumber(-1, 1),
-              0 * randomNumber(-1, 1),
-              0 * randomNumber(-1, 1)
-            ),
-            rotation: new Euler(0, 0, 0),
-          },
-          visible: true,
-          shadow: { receive: false, cast: false },
-        },
-      ]);
-    });
   };
 
   return (
@@ -77,7 +50,7 @@ const Toolbar: FC = () => {
           href="/"
           className="flex h-12 w-12 flex-col items-center justify-center gap-1 text-fuchsia-900 dark:text-gray-400"
         >
-          <Icons.arrowDownToDot />
+          <Icons.home />
         </a>
       </nav>
       <div
@@ -104,22 +77,9 @@ const Toolbar: FC = () => {
             <Separator />
           </div>
           <div className="grid grid-cols-3 gap-1 justify-center">
-            <div className="text-center h-20 w-20 grayscale">
-              <img
-                src="/shapes/cube.png"
-                alt=""
-                onClick={() => onClickShape("cube")}
-              />
-            </div>
-            <div className="text-center h-20 w-20 grayscale">
-              <img src="/shapes/sphere2.png" alt="" />
-            </div>
-            <div className="text-center h-20 w-20 grayscale">
-              <img src="/shapes/torus2.png" alt="" />
-            </div>
-            <div className="text-center h-16 w-16 grayscale">
-              <img src="/shapes/cone.png" alt="" />
-            </div>
+            {shapeList.map((type: string, k: number) => (
+              <ShapeSelector key={k} type={type} />
+            ))}
           </div>
         </div>
       </div>

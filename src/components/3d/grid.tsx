@@ -1,7 +1,7 @@
 import { Grid } from "@react-three/drei";
 import { DoubleSide } from "three";
 
-export default function CanvasGrid() {
+export const CanvasGrid = () => {
   return (
     <Grid
       position={[0, -0.501, 0]}
@@ -17,4 +17,6 @@ export default function CanvasGrid() {
       side={DoubleSide}
     />
   );
-}
+};
+
+export default CanvasGrid;

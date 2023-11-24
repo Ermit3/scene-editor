@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import CanvasEnvironment from "./3d/canvasEnvironment";
+import CanvasEnvironment from "./3d/canvas-environment";
 import { useSceneState } from "./studio-provider";
 import { currentShape } from "./3d/shapes";
 

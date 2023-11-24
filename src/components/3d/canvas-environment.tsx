@@ -2,10 +2,10 @@ import { Environment, OrbitControls } from "@react-three/drei";
 import Cursor from "./cursor";
 import CanvasGrid from "./grid";
 import CanvasLight from "./light";
-import CanvasGizmoHelper from "./gizmoHelper";
-import CanvasMeshes from "./canvasMeshes";
+import CanvasGizmoHelper from "./gizmo-helper";
+import CanvasMeshes from "./canvas-meshes";
 
-export default function CanvaEnvironment() {
+export const CanvaEnvironment = () => {
   return (
     <>
       <CanvasLight />
@@ -19,4 +19,6 @@ export default function CanvaEnvironment() {
       <CanvasGizmoHelper />
     </>
   );
-}
+};
+
+export default CanvaEnvironment;

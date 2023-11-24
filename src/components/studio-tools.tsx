@@ -1,17 +1,9 @@
 "use client";
 
-import { FC, useContext } from "react";
+import { FC } from "react";
 import { useSceneState } from "./studio-provider";
 import { Icons } from "./icons";
-
-interface ToolProps {
-  name: string;
-  icon: string;
-}
-
-interface IconComponents {
-  [key: string]: React.ReactNode;
-}
+import { IconComponents, ToolProps } from "@/types";
 
 const Tools: FC<ToolProps> = ({ name, icon }) => {
   const { setCurrentTool } = useSceneState();
