@@ -55,6 +55,7 @@ export const CanvasMeshes = () => {
     };
 
     fetchData();
+    console.log("fetching meshes");
   }, [shapes]);
 
   return (

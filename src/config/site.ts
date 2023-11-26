@@ -7,5 +7,6 @@ export const siteConfig = {
   links: {
     twitter: "https://twitter.com/erwan_ngma",
     github: "https://github.com/Ermit3",
+    canvaEditor: "https://github.com/Ermit3/scene-editor",
   },
 };

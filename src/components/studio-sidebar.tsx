@@ -7,13 +7,13 @@ import { currentShape } from "./3d/shapes";
 import { Icons } from "./icons";
 import { cn } from "@/lib/utils";
 import styles from "@/styles";
-import ComponentsBar from "./studio-components-bar";
+import ComponentsBar from "./studio-shapes-components-bar";
 import ShapeConfig from "./studio-shapes-config";
 import { ShapeType } from "@/types";
 
 export const EditorSidebar: FC = () => {
   const [hovered, setHovered] = useState(false);
-  const [activeShape, setActiveShape] = useState<ShapeType | []>(
+  const [activeShape, setActiveShape] = useState<ShapeType | any>(
     currentShape.value
   );
 

@@ -13,6 +13,7 @@ import { scenes } from "./schemas/scenes";
 import { meshes } from "./schemas/meshes";
 
 import dotenv from "dotenv";
+import { EmailInterface, IdInterface, SetUserInterface } from "@/types";
 
 dotenv.config({ path: "./.env.local" });
 
@@ -78,7 +79,13 @@ export const getMeshesByScene = async (id: string) => {
   return await db.select().from(meshes).where(eq(meshes.sceneId, id));
 };
 
-export const setMesh = async ({ type, sceneId }: any) => {
+export const setMesh = async ({
+  type,
+  sceneId,
+}: {
+  type: string;
+  sceneId: string;
+}) => {
   return await db
     .insert(meshes)
     .values({

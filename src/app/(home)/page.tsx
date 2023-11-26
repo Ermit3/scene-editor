@@ -1,5 +1,6 @@
 import { AddScene } from "@/components/scene-create-button";
 import { SceneCard } from "@/components/scene-card";
+import { SceneInterface } from "@/types";
 
 async function getData() {
   const res = await fetch("http://localhost:3000/api/scenes", {
@@ -20,8 +21,8 @@ export default async function Home() {
       <div className="grid grid-cols-4 gap-4">
         {scenes?.length ? (
           <>
-            {scenes.map((scene: SceneInterface) => (
-              <SceneCard key={scene.id} scene={scene} />
+            {scenes.map((scene: SceneInterface, k: number) => (
+              <SceneCard key={k} scene={scene} />
             ))}
           </>
         ) : (

@@ -97,7 +97,6 @@ export const Shape: React.FC<ShapeProps> = ({ id, type, ...props }) => {
   );
 
   const onDragEnd = async () => {
-    console.log(_position.x, _position.y, _position.z);
     updateMesh({
       id,
       scale,
