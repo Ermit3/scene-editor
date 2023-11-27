@@ -34,9 +34,6 @@ const ShapesConfig: React.FC<ShapesConfigProps> = ({ activeShape }) => {
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>, target: string) => {
-    console.log(e.target.value, target);
-    console.log(activeShape.coordinate.position[target]);
-
     updateMesh({
       id: activeShape.id,
       position: {

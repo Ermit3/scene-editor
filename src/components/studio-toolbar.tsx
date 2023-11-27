@@ -21,6 +21,9 @@ import { shapeList } from "@/config/shape-list";
 const Toolbar: FC = () => {
   const { currentTool, setCurrentTool } = useSceneState();
 
+  /**
+   * @description Close the current tool and set the current tool to null. In line 75, the current tool is used to animate the toolbar.
+   */
   const onClick = () => {
     setCurrentTool(null);
   };
@@ -76,11 +79,19 @@ const Toolbar: FC = () => {
           <div className="w-full">
             <Separator />
           </div>
-          <div className="grid grid-cols-3 gap-1 justify-center">
-            {shapeList.map((type: string, k: number) => (
-              <ShapeSelector key={k} type={type} />
-            ))}
-          </div>
+          {currentTool === "Asset" ? (
+            <>
+              <div className="grid grid-cols-3 gap-1 justify-center">
+                {shapeList.map((type: string, k: number) => (
+                  <ShapeSelector key={k} type={type} />
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <p>Bientot disponible ...</p>
+            </>
+          )}
         </div>
       </div>
     </div>
