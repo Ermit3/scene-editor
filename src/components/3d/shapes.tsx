@@ -60,7 +60,7 @@ export const Shape: React.FC<ShapeProps> = ({ id, type, ...props }) => {
         return (
           <Box ref={shapeRef} onClick={onClick} {...props}>
             {material}
-            {outline}
+            {/* {outline} */}
           </Box>
         );
       case "sphere":

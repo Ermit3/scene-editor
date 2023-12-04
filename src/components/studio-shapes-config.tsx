@@ -18,9 +18,9 @@ const ShapesConfig: React.FC<ShapesConfigProps> = ({ activeShape }) => {
 
   useDidMountEffect(() => {
     if (updatedShapes) {
-      setShapes(updatedShapes);
       console.log(updatedShapes);
       console.log(shapes);
+      setShapes(updatedShapes);
     }
   }, [updatedShapes]);
 
@@ -29,6 +29,18 @@ const ShapesConfig: React.FC<ShapesConfigProps> = ({ activeShape }) => {
       const _updatedShapes = shapes.filter(
         (shape: ShapeType) => shape.id !== activeShape.id
       );
+
+      // setShapes(
+      //   shapes.filter((shape: ShapeType) => shape.id !== activeShape.id)
+      // );
+
+      // const _updatedShapes = shapes.map((shape: ShapeType) => {
+      //   if (shape.id === activeShape.id) {
+      //     return { ...shape, visible: false };
+      //   } else {
+      //     return shape;
+      //   }
+      // });
       setUpdatedShapes(_updatedShapes);
     });
   };
