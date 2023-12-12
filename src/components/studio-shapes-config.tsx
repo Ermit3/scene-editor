@@ -7,8 +7,7 @@ import { deleteMesh, updateMesh } from "@/db";
 import { useSceneState } from "./studio-provider";
 import useDidMountEffect from "@/hooks/useDidMountEffect";
 import { useState } from "react";
-import { ShapeType, ShapesConfigProps, XYZType } from "@/types";
-import { Input } from "./ui/input";
+import { ShapeType, ShapesConfigProps } from "@/types";
 import { ScrollArea } from "./ui/scroll-area";
 import CoordinateConfig from "./studio-shapes-config-coordinate";
 
@@ -30,17 +29,6 @@ const ShapesConfig: React.FC<ShapesConfigProps> = ({ activeShape }) => {
         (shape: ShapeType) => shape.id !== activeShape.id
       );
 
-      // setShapes(
-      //   shapes.filter((shape: ShapeType) => shape.id !== activeShape.id)
-      // );
-
-      // const _updatedShapes = shapes.map((shape: ShapeType) => {
-      //   if (shape.id === activeShape.id) {
-      //     return { ...shape, visible: false };
-      //   } else {
-      //     return shape;
-      //   }
-      // });
       setUpdatedShapes(_updatedShapes);
     });
   };
