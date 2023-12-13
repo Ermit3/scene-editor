@@ -1,5 +1,5 @@
 import { updateMesh } from "@/db";
-import { Box, Outlines, PivotControls } from "@react-three/drei";
+import { Box, Outlines, PivotControls, Sphere, Torus } from "@react-three/drei";
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { Euler, Matrix4, Quaternion, Vector3 } from "three";
 import { useSceneState } from "../studio-provider";
@@ -44,7 +44,7 @@ export const Shape: React.FC<ShapeProps> = ({ id, type, ...props }) => {
   }, []);
 
   const getMeshComponent = () => {
-    const material = <meshBasicMaterial color="grey" />;
+    const material = <meshStandardMaterial color="grey" />;
     const outline = (
       <Outlines
         thickness={active ? 0.015 : 0}
@@ -64,11 +64,21 @@ export const Shape: React.FC<ShapeProps> = ({ id, type, ...props }) => {
           </Box>
         );
       case "sphere":
-        return "<Icons.boxes />";
+        return (
+          <Sphere ref={shapeRef} onClick={onClick} scale={[0.15]} {...props}>
+            {material}
+            {/* {outline} */}
+          </Sphere>
+        );
       case "plane":
         return "<Icons.upload />";
       case "torus":
-        return "<Icons.type />";
+        return (
+          <Torus ref={shapeRef} onClick={onClick} scale={[0.15]} {...props}>
+            {material}
+            {/* {outline} */}
+          </Torus>
+        );
       case "cone":
         return "<Icons.playSquare />";
       default:
