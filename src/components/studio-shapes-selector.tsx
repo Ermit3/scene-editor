@@ -10,7 +10,7 @@ const ShapeSelector: FC<ShapeSelectorProps> = ({ type }) => {
   const { sceneId } = useParams<SceneIdParamsType>();
   const { setShapes } = useSceneState();
 
-  const onClickShape = (type: string) => {
+  const useClickShape = (type: string) => {
     const newMesh = useSetMesh(type, sceneId);
     newMesh.then((result) => {
       return setShapes((prevList: ShapeType[]) => [
@@ -39,7 +39,7 @@ const ShapeSelector: FC<ShapeSelectorProps> = ({ type }) => {
       <img
         src={`/shapes/${type}.png`}
         alt={`${type} forme`}
-        onClick={() => onClickShape(type)}
+        onClick={() => useClickShape(type)}
       />
     </div>
   );
