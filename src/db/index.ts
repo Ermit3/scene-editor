@@ -83,7 +83,7 @@ export const setMesh = async ({
   type,
   sceneId,
 }: {
-  type: string;
+  type: "cube" | "plane" | "sphere";
   sceneId: string;
 }) => {
   return await db
@@ -91,15 +91,15 @@ export const setMesh = async ({
     .values({
       id: nanoid(),
       type,
-      positionX: 0,
-      positionY: 0,
-      positionZ: 0,
-      rotationX: 0,
-      rotationY: 0,
-      rotationZ: 0,
-      scaleX: 1,
-      scaleY: 1,
-      scaleZ: 1,
+      positionX: "0",
+      positionY: "0",
+      positionZ: "0",
+      rotationX: "0",
+      rotationY: "0",
+      rotationZ: "0",
+      scaleX: "1",
+      scaleY: "1",
+      scaleZ: "1",
       sceneId,
     })
     .returning();
