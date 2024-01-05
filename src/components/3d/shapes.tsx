@@ -58,14 +58,32 @@ export const Shape: React.FC<ShapeProps> = ({ id, type, ...props }) => {
     switch (type) {
       case "cube":
         return (
-          <Box ref={shapeRef} onClick={onClick} {...props}>
+          <Box
+            ref={shapeRef}
+            onClick={onClick}
+            scale={0.15}
+            position={position}
+            rotation={rotation}
+            visible
+            castShadow
+            receiveShadow
+          >
             {material}
             {/* {outline} */}
           </Box>
         );
       case "sphere":
         return (
-          <Sphere ref={shapeRef} onClick={onClick} scale={[0.15]} {...props}>
+          <Sphere
+            ref={shapeRef}
+            onClick={onClick}
+            scale={0.15}
+            position={position}
+            rotation={rotation}
+            visible
+            castShadow
+            receiveShadow
+          >
             {material}
             {/* {outline} */}
           </Sphere>
@@ -74,7 +92,16 @@ export const Shape: React.FC<ShapeProps> = ({ id, type, ...props }) => {
         return "<Icons.upload />";
       case "torus":
         return (
-          <Torus ref={shapeRef} onClick={onClick} scale={[0.15]} {...props}>
+          <Torus
+            ref={shapeRef}
+            onClick={onClick}
+            scale={0.15}
+            position={position}
+            rotation={rotation}
+            visible
+            castShadow
+            receiveShadow
+          >
             {material}
             {/* {outline} */}
           </Torus>
