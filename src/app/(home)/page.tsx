@@ -3,14 +3,19 @@ import { SceneCard } from "@/components/scene-card";
 import { SceneInterface } from "@/types";
 
 async function getData() {
-  const res = await fetch("https://127.0.0.1:3000/api/scenes", {
-    // No cache
-    next: { revalidate: 0 },
-  });
-  if (!res.ok) {
+  try {
+    const response = await fetch(
+      "https://scene-editor-jtb1xa0ah-ermit3.vercel.app/api/scenes",
+      {
+        // No cache
+        next: { revalidate: 0 },
+      }
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
     throw new Error("Failed to fetch data");
   }
-  return res.json();
 }
 
 export default async function Home() {
