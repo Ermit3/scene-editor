@@ -82,7 +82,7 @@ const Toolbar: FC = () => {
           {currentTool === "Asset" ? (
             <>
               <div className="grid grid-cols-3 gap-1 justify-center">
-                {shapeList.map((type: string, k: number) => (
+                {shapeList.map((type: any, k: number) => (
                   <ShapeSelector key={k} type={type} />
                 ))}
               </div>
