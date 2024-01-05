@@ -3,7 +3,7 @@ import { SceneCard } from "@/components/scene-card";
 import { SceneInterface } from "@/types";
 
 async function getData() {
-  const res = await fetch("/api/scenes", {
+  const res = await fetch("https://127.0.0.1:3000/api/scenes", {
     // No cache
     next: { revalidate: 0 },
   });
