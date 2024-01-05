@@ -102,7 +102,7 @@ interface SceneIdParamsType extends Params {
 }
 
 type ShapeSelectorProps = {
-  type: string;
+  type: "cube" | "plane" | "sphere";
 };
 
 type ToolProps = {
