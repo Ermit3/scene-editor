@@ -6,6 +6,7 @@ import { EditorSidebar } from "@/components/studio-sidebar";
 import EditorCanva from "@/components/studio-canva";
 import Toolbar from "@/components/studio-toolbar";
 import StudioProvider from "@/components/studio-provider";
+import { EditorPageProps } from "@/types";
 
 export default async function EditorPage({ params }: EditorPageProps) {
   const scene = await getSceneById(params.sceneId);
