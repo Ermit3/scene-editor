@@ -8,7 +8,10 @@ async function getData() {
       // No cache
       next: { revalidate: 0 },
     });
-    const data = await response.json();
+    const rawData = await response.text();
+    console.log("Raw data:", rawData);
+
+    const data = JSON.parse(rawData);
     return data;
   } catch (error) {
     console.error(error);
