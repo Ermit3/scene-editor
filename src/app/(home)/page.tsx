@@ -4,13 +4,10 @@ import { SceneInterface } from "@/types";
 
 async function getData() {
   try {
-    const response = await fetch(
-      "https://scene-editor-jtb1xa0ah-ermit3.vercel.app/api/scenes",
-      {
-        // No cache
-        next: { revalidate: 0 },
-      }
-    );
+    const response = await fetch("https://127.0.0.1:3000/api/scenes", {
+      // No cache
+      next: { revalidate: 0 },
+    });
     const data = await response.json();
     return data;
   } catch (error) {
