@@ -9,9 +9,9 @@ import { useSceneState } from "./studio-provider";
 const ShapeSelector: FC<ShapeSelectorProps> = ({ type }) => {
   const { sceneId } = useParams<SceneIdParamsType>();
   const { setShapes } = useSceneState();
+  const newMesh = useSetMesh(type, sceneId);
 
-  const onClickShape = (type: string) => {
-    const newMesh = useSetMesh(type, sceneId);
+  const onClickShape = () => {
     newMesh.then((result) => {
       return setShapes((prevList: ShapeType[]) => [
         ...prevList,
@@ -39,7 +39,7 @@ const ShapeSelector: FC<ShapeSelectorProps> = ({ type }) => {
       <img
         src={`/shapes/${type}.png`}
         alt={`${type} forme`}
-        onClick={() => onClickShape(type)}
+        onClick={() => onClickShape()}
       />
     </div>
   );
